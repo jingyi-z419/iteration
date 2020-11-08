@@ -299,3 +299,31 @@ f(x = y)
 ```
 
     ## [1] 4
+
+## Functions as arguments
+
+``` r
+my_summary = function(x, summ_func) {
+  
+  summ_func(x)
+  
+}
+
+x_vec = rnorm(100, 3, 7)
+
+mean(x_vec)
+```
+
+    ## [1] 3.220714
+
+``` r
+median(x_vec)
+```
+
+    ## [1] 2.049699
+
+``` r
+my_summary(x_vec, mean) # median, sd, IQR
+```
+
+    ## [1] 3.220714
