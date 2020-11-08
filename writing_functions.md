@@ -272,7 +272,7 @@ Let’s read a few pages of reviews.
 ``` r
 dynamite_url_base = "https://www.amazon.com/product-reviews/B00005JNBQ/ref=cm_cr_arp_d_viewopt_rvwer?ie=UTF8&reviewerType=avp_only_reviews&sortBy=recent&pageNumber="
 
-dynamite_urls = str_c(dynamite_url_base, 1:5)
+dynamite_urls = str_c(dynamite_url_base, 1:50)
 
 all_reviews =
   bind_rows(
@@ -283,3 +283,19 @@ all_reviews =
     read_page_reviews(dynamite_urls[5])
   )
 ```
+
+## Mean scoping example
+
+``` r
+f = function(x) {
+  z = x + y
+  z
+}
+
+x = 1
+y = 2
+
+f(x = y)
+```
+
+    ## [1] 4
