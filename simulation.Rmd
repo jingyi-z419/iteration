@@ -49,14 +49,46 @@ I can "simulate" by running this line.
 sim_mean_sd(30)
 ```
 
-
 ## Let's simulate a lot
 
+Let's start with a for loop.
+
+```{r}
+output = vector("list", length = 100)
+
+for (i in 1:100) {
+  
+  output[[i]] = sim_mean_sd(samp_size = 30)
+  
+}
+
+bind_rows(output)
+```
+
+Let's use a loop function
+
+```{r}
+sim_results =
+  rerun(100, sim_mean_sd(samp_size = 30)) %>%
+  bind_rows()
+```
 
 
+let's look at results ...
 
+```{r}
+sim_results %>%
+  ggplot(aes(x = mean)) + geom_density()
 
+sim_results %>%
+  summarize(
+    avg_samp_mean = mean(mean),
+    sd_samp_mean = sd(mean)
+  )
 
+sim_results %>%
+  ggplot(aes(x = sd)) + geom_density()
+```
 
 
 
